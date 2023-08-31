@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar Heatmap</title>
+  <script src="https://d3js.org/d3.v6.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"></script>
+
+  <style>
+body {
+  font-family: "San Francisco", "Helvetica Neue", Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+input[type="submit"] {
+  padding: 10px 20px;
+  background-color: #0088ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#container {
+  margin-top: 20px;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  background-color: #fff;
+  border: 2px solid #0088ff;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  opacity: 0;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  font-size: 11px; /* Reduce the font size */
+}
+
+.transaction-table th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.transaction-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.transaction-table-container {
+  position: relative;
+  margin-top: 20px;
+}
+
+/* Calendar Heatmap */
+
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+.legend-container {
+  width: 220px;
+  height: 40px;
+}
+
+.legend {
+  margin-top: 20px;
+}
+
+.legend rect {
+  width: 20px;
+  height: 20px;
+}
+
+.legend-text {
+  font-size: 10px;
+  text-anchor: middle;
+  fill: #555;
+}
+
+  </style>
+</head>
+<body>
+<form id="address-form">
+  <label for="address">Symbol Address:</label><br>
+  <input type="text" id="address" name="address" value=""><br> 
+  <label for="mosaic">Mosaic ID:</label><br>
+  <input type="text" id="mosaicId" name="mosaicId" value="6BED913FA20223F8"><br>
+  <input type="submit" value="Submit">
+</form>
+  <div id="container">
+    <div id="transaction-table"></div>
+  </div>
+  <script src="plotData.js"></script>
+</body>
+</html>
